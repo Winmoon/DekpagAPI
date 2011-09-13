@@ -1,5 +1,7 @@
 package br.com.winmoon.dekpag;
 
+import java.math.BigDecimal;
+
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 import org.apache.commons.httpclient.methods.PostMethod;
@@ -39,7 +41,7 @@ public class Dekpag {
 		httpClient.getHttpConnectionManager().getParams().setSoTimeout(_READ_TIMEOUT);
 	}
 
-	public StatusPayment getStatus(String sale, String value) throws DekpagException {
+	public StatusPayment getStatus(String sale, BigDecimal value) throws DekpagException {
 		try {
 			
 			// set the parameters of request
@@ -47,7 +49,7 @@ public class Dekpag {
 			method.addParameter("apiKey", apiKey);
 			method.addParameter("apiSecret", apiSecret);
 			method.addParameter("sale", sale);
-			method.addParameter("value", value);
+			method.addParameter("value", value.toString());
 			
 			httpClient.executeMethod(method);
 
