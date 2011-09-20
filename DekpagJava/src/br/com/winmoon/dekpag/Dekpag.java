@@ -21,15 +21,25 @@ public class Dekpag {
 	private static final int _1_SEC = 1000;
 	private static final int _CONNECTION_TIMEOUT = 20 * _1_SEC;
 	private static final int _READ_TIMEOUT = 80 * _1_SEC;
-	private static final String DEKPAG_URL = "https://localhost:8443/Dekpag/ws";
-
+	private static String DEKPAG_URL = "https://www.dekpag.com/ws";
+	
 	private String apiKey;
 	private String apiSecret;
 
 	private static HttpClient httpClient;
 
+
+	public Dekpag(String url, String apiKey, String apiSecret) {
+		DEKPAG_URL = url;
+		loadData(apiKey, apiSecret);
+	}
+
 	public Dekpag(String apiKey, String apiSecret) {
 		
+		loadData(apiKey, apiSecret);
+	}
+
+	private void loadData(String apiKey, String apiSecret) {
 		// configure establishment data
 		this.apiKey = apiKey;
 		this.apiSecret = apiSecret;
@@ -65,6 +75,7 @@ public class Dekpag {
 				xStream.aliasAttribute(StatusPayment.class, "message", "message"); 
 				xStream.aliasAttribute(StatusPayment.class, "protocol", "protocol");
 				xStream.aliasAttribute(StatusPayment.class, "value", "value");
+				xStream.aliasAttribute(StatusPayment.class, "uid", "uid");
 				
 				// convert xml string into StatusPayment object
 				StatusPayment statusPayment = (StatusPayment)xStream.fromXML(response);

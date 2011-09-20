@@ -14,6 +14,7 @@ public class StatusPayment {
 	private String message;
 	private String protocol;
 	private BigDecimal value;
+	private Long uid;
 
 	public Status getStatus() {
 		return Status.get(statusCode);
@@ -49,6 +50,14 @@ public class StatusPayment {
 
 	public void setValue(BigDecimal value) {
 		this.value = value;
+	}
+
+	public Long getUid() {
+		return uid;
+	}
+
+	public void setUid(Long uid) {
+		this.uid = uid;
 	}
 
 	public enum Status {

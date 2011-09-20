@@ -28,6 +28,7 @@ public class Test {
 		System.out.println("Message:  " + status.getMessage());
 		System.out.println("Protocol: " + status.getProtocol());
 		System.out.println("Value:    " + status.getValue());
+		System.out.println("User ID:    " + status.getUid());
 		System.out.println("#############################################");
 		
 
